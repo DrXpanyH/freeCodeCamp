@@ -204,9 +204,10 @@ ALTER SEQUENCE public.planet_star_id_seq OWNED BY public.planet.star_id;
 --
 
 CREATE TABLE public.spaceships (
-    spacesip_id integer NOT NULL,
+    spaceships_id integer NOT NULL,
     name character varying(30) NOT NULL,
-    color character varying(30) NOT NULL
+    color character varying(30) NOT NULL,
+    space text
 );
 
 
@@ -231,7 +232,7 @@ ALTER TABLE public.spaceships_spacesip_id_seq OWNER TO freecodecamp;
 -- Name: spaceships_spacesip_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
-ALTER SEQUENCE public.spaceships_spacesip_id_seq OWNED BY public.spaceships.spacesip_id;
+ALTER SEQUENCE public.spaceships_spacesip_id_seq OWNED BY public.spaceships.spaceships_id;
 
 
 --
@@ -329,10 +330,10 @@ ALTER TABLE ONLY public.planet ALTER COLUMN star_id SET DEFAULT nextval('public.
 
 
 --
--- Name: spaceships spacesip_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: spaceships spaceships_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.spaceships ALTER COLUMN spacesip_id SET DEFAULT nextval('public.spaceships_spacesip_id_seq'::regclass);
+ALTER TABLE ONLY public.spaceships ALTER COLUMN spaceships_id SET DEFAULT nextval('public.spaceships_spacesip_id_seq'::regclass);
 
 
 --
@@ -409,9 +410,9 @@ INSERT INTO public.planet VALUES (12, 5, 'memento', 1, 5, false);
 -- Data for Name: spaceships; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.spaceships VALUES (1, 'ura', 'red');
-INSERT INTO public.spaceships VALUES (2, 'list', 'green');
-INSERT INTO public.spaceships VALUES (3, 'stebel', 'green');
+INSERT INTO public.spaceships VALUES (1, 'ura', 'red', NULL);
+INSERT INTO public.spaceships VALUES (2, 'list', 'green', NULL);
+INSERT INTO public.spaceships VALUES (3, 'stebel', 'green', NULL);
 
 
 --
@@ -543,7 +544,7 @@ ALTER TABLE ONLY public.spaceships
 --
 
 ALTER TABLE ONLY public.spaceships
-    ADD CONSTRAINT spaceships_pkey PRIMARY KEY (spacesip_id);
+    ADD CONSTRAINT spaceships_pkey PRIMARY KEY (spaceships_id);
 
 
 --
